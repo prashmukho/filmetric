@@ -1,3 +1,6 @@
 require 'bundler/setup'
 Bundler.require
-require 'csv'
+require 'open-uri'
+
+require_relative '../lib/models/imdb_scraper.rb'
+require_relative '../lib/models/rt_querier.rb'
