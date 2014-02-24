@@ -1,3 +1,5 @@
+require_relative '../../config/environment'
+
 class IMDBScraper
   attr_accessor :titles, :counter, :base_url
   BASE_URL = 'http://www.imdb.com/search/title?at=0&groups=top_1000&sort=year,desc&view=simple'
@@ -14,16 +16,17 @@ class IMDBScraper
   end
 
   def generate_url(counter)
+    base = 'http://www.imdb.com/search/title?at=0&groups=top_1000&sort=year,desc&view=simple'
     if counter == 0
-      BASE_URL
+      base
     else
-      new_url = BASE_URL << "&start=#{counter}01"
+      new_url = base << "&start=#{counter}01"
       new_url
     end
   end
 
   def scrape
-    while counter < 10
+    while counter < 7
       nokogiri_query(generate_url(counter))
       self.counter += 1
     end

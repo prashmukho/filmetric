@@ -4,4 +4,6 @@ require_relative '../config/environment'
 scraper = IMDBScraper.new
 scraper.scrape
 querier = RTQuerier.new(scraper.titles)
-puts querier.data
+querier.query
+ap querier.queried_movies
+

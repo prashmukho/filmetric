@@ -8,6 +8,12 @@ describe RTQuerier do
     expect(querier.data).to eq(titles)
   end
 
+  it 'gets valid data' do
+    querier = RTQuerier.new(titles)
+    querier.query
+    expect(querier.queried_movies).to_not eq({})
+  end
+
   xit 'can create movie instances from RT queries' do
     querier = RTQuerier.new(titles)
     querier.query
