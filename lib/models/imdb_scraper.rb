@@ -2,9 +2,9 @@ require_relative '../../config/environment'
 
 class IMDBScraper
   attr_accessor :titles, :counter, :base_url
-  BASE_URL = 'http://www.imdb.com/search/title?at=0&groups=top_1000&sort=year,desc&view=simple'
 
-  def initialize
+  def initialize(base_url)
+    self.base_url = base_url
     self.titles = []
     self.counter = 0
   end
@@ -16,11 +16,10 @@ class IMDBScraper
   end
 
   def generate_url(counter)
-    base = 'http://www.imdb.com/search/title?at=0&groups=top_1000&sort=year,desc&view=simple'
     if counter == 0
-      base
+      base_url
     else
-      new_url = base << "&start=#{counter}01"
+      new_url = "#{base_url}&start=#{counter}01"
       new_url
     end
   end

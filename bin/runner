@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 require_relative '../config/environment'
 
-scraper = IMDBScraper.new
+scraper = IMDBScraper.new('http://www.imdb.com/search/title?at=0&groups=top_1000&sort=year,desc&view=simple')
 scraper.scrape
 querier = RTQuerier.new(scraper.titles)
-querier.query
-ap querier.queried_movies
+puts querier.data.length
+# querier.query
+# ap querier.queried_movies
 
