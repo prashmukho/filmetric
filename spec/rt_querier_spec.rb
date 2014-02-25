@@ -1,21 +1,21 @@
 require_relative 'spec_helper'
 
 describe RTQuerier do
-  let(:titles) {['Moon', 'Precious', 'A Prophet']}
+  let(:ids) {['0892769', '1120985', '0840361']}
   
   it 'takes data on initialization' do
-    querier = RTQuerier.new(titles)
-    expect(querier.data).to eq(titles)
+    querier = RTQuerier.new(ids)
+    expect(querier.data).to eq(ids)
   end
 
   it 'gets valid data' do
-    querier = RTQuerier.new(titles)
+    querier = RTQuerier.new(ids)
     querier.query
     expect(querier.queried_movies).to_not eq({})
   end
 
   xit 'can create movie instances from RT queries' do
-    querier = RTQuerier.new(titles)
+    querier = RTQuerier.new(ids)
     querier.query
 
     expect(Movie.all.count).to eq(3)

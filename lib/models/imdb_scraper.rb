@@ -1,17 +1,17 @@
 require_relative '../../config/environment'
 
 class IMDBScraper
-  attr_accessor :titles, :counter, :base_url
+  attr_accessor :ids, :counter, :base_url
 
   def initialize(base_url)
     self.base_url = base_url
-    self.titles = []
+    self.ids = []
     self.counter = 0
   end
 
   def nokogiri_query(url)
-    Nokogiri::HTML(open(url)).css('table.results td.title a').each do |t|
-     titles << t.text
+    Nokogiri::HTML(open(url)).css('table.results td.title a[href]').each do |m|
+     ids << m.attributes["href"].value.scan(/\d/).join
     end
   end
 

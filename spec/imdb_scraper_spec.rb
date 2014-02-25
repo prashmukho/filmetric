@@ -5,7 +5,7 @@ describe IMDBScraper do
 
   it 'has titles' do
     scraper = IMDBScraper.new(url)
-    expect(scraper.titles).to eq([])
+    expect(scraper.ids).to eq([])
   end
 
   it 'sets counter to 0 on initialization' do
@@ -16,20 +16,20 @@ describe IMDBScraper do
   it 'can query nokogiri' do
     scraper = IMDBScraper.new(url)
     scraper.nokogiri_query(url)
-    expect(scraper.titles.length).to_not eq(0)
+    expect(scraper.ids.length).to_not eq(0)
   end
 
   it 'can generate valid urls' do
     scraper = IMDBScraper.new(url)
     new_url = scraper.generate_url(5)
     scraper.nokogiri_query(new_url)
-    expect(scraper.titles.length).to_not eq(0)
+    expect(scraper.ids.length).to_not eq(0)
   end
 
   it 'gets titles while scraping' do
     scraper = IMDBScraper.new(url)
     scraper.scrape
-    expect(scraper.titles.length).to_not eq(0)
+    expect(scraper.ids.length).to_not eq(0)
   end
 
 end

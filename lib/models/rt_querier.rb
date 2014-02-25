@@ -10,19 +10,23 @@ class RTQuerier
     self.queried_movies = {}
   end
 
-  def find_movie(title)
-    movie = RottenMovie.find(:title => title, :limit => 1)
-    if !movie.is_a? Array
-      full_movie = RottenMovie.find(:id => movie.id)
-      sleep 1
-      full_movie
+  # def find_movie_by_name(movie_name)
+  # end
+
+  def find_movie_by_imdb(imdb_id)
+    movie = RottenMovie.find(:imdb => imdb_id)
+    if !movie.nil?
+      movie
     end
   end
 
   def query
-    data.each do |title|
-      m = find_movie(title)
+    data.each do |imdb_id|
+      m = find_movie_by_imdb(imdb_id)
+      
+
       if !m.nil?
+        # Movie.create(:title => m.title....)
         queried_movies[m.title] = {
           :genres => m.genres,
           :release_year => m.year,
